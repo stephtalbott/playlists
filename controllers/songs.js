@@ -2,7 +2,6 @@ const playlist = require('../models/playlist')
 const Playlist = require('../models/playlist')
 
 
-
 function addSongToPlaylist(req, res, next) {
     Playlist.findById(req.params.playlistId)
         .then(playlist => {
