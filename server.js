@@ -26,6 +26,7 @@ app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(methodOverride('_method'))
 
+
 app.use(
 	session({
 		secret: process.env.SECRET,
