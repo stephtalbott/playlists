@@ -1,0 +1,9 @@
+<%- include('../partials/header') %>
+
+<form action="/playlists" method="POST" autocomplete="off">
+    Title: <input type="text" name="name"> <br>
+    This Playlist is For: <input type="text" name="description">
+    <button type="submit">Save Playlist</button>
+</form>
+
+<%- include('../partials/footer') %>

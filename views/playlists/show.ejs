@@ -1,0 +1,31 @@
+<%- include('../partials/header.ejs') %>
+
+<h3>
+    <%= playlist.name %> <br>
+    for:<Br>
+    <%= playlist.description %>
+</h3>
+
+<ul>
+    <% playlist.song.forEach(function(song) { %>
+        <li>
+            <form action="/song/<%= playlist.id %>/<%= song.id %>?_method=DELETE" method="POST">
+                <button type="submit">X</button>
+            </form>
+            <a href="/songs/<%= song.id %>">
+                <%= song.name %>
+                <%= song.artistName %>
+            </a>
+        </li>
+        <% }); %>
+</ul>
+
+<form action="/songs/<%= playlist.id %>" method="POST">
+    Song Title: <input type="text" name="name"><br>
+    Artist Name: <input type="text" name="artistName"><br>
+    <button type="submit">Add Song</button>
+</form>
+
+<a href="/playlists/<%= playlist.id %>/edit">Edit Playlist</a>
+
+<%- include('../partials/footer.ejs') %>
