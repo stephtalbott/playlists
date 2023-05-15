@@ -43,10 +43,47 @@ function show(req, res, next) {
         .catch(next)
 }
 
+function updatePlaylistForm(req, res, next) {
+  Playlist.findById(req.params.id).then((playlist) => {
+    if (!playlist.user.equals(req.user._id)) throw new Error("Unauthorized");
+    res.render("playlists/edit", {
+      playlist,
+      title: "Playlist Edit Detail",
+    });
+  });
+}
+
+function update(req, res, next) {
+  Playlist.findById(req.params.id)
+    .then((playlist) => {
+      if (!playlist.user.equals(req.user._id))
+        throw new Error("Unauthorized");
+
+      // if the users match, update with updateOne method and pass in the info from the form
+      return playlist.updateOne(req.body);
+    })
+    .then(() => res.redirect(`/playlists/${req.params.id}`))
+    .catch(next);
+}
+
+function deletePlaylist(req, res, next) {
+  Playlist.findById(req.params.id)
+    .then((playlist) => {
+      if (!playlist.user.equals(req.user._id))
+        throw new Error("Unauthorized");
+
+      return playlist.deleteOne();
+    })
+    .then(() => res.redirect("/playlists"))
+    .catch(next);
+}
 
 module.exports = {
     index, 
     newPlaylist,
     create,
     show,
+    updatePlaylistForm,
+    update,
+    deletePlaylist,
 }

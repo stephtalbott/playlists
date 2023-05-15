@@ -12,7 +12,6 @@
             <form action="/song/<%= playlist.id %>/<%= song.id %>?_method=DELETE" method="POST">
                 <button type="submit">X</button>
             </form>
-            <a href="/songs/<%= song.id %>">
                 <%= song.name %>
                 <%= song.artistName %>
             </a>
@@ -20,7 +19,7 @@
         <% }); %>
 </ul>
 
-<form action="/songs/<%= playlist.id %>" method="POST">
+<form action="/playlists/<%= playlist.id %>" method="POST">
     Song Title: <input type="text" name="name"><br>
     Artist Name: <input type="text" name="artistName"><br>
     <button type="submit">Add Song</button>
