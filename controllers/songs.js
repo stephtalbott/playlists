@@ -5,6 +5,8 @@ const Playlist = require('../models/playlist')
 function addSongToPlaylist(req, res, next) {
     Playlist.findById(req.params.playlistId)
         .then(playlist => {
+            if (!playlist.user.equals(req.user._id))
+            throw new Error("Unauthorized");
             playlist.song.push(req.body)
             return playlist.save()
         })
