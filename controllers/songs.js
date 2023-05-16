@@ -15,12 +15,12 @@ function addSongToPlaylist(req, res, next) {
 }
 
 function deleteSongFromPlaylist(req, res, next) {
-  Playlist.findById(req.params.playlistId)
-    .then((playlist) => {
-      if (!playlist.user.equals(req.user._id))
+    Playlist.findById(req.params.playlistId)
+        .then((playlist) => {
+        if (!playlist.user.equals(req.user._id))
         throw new Error("Unauthorized");
-      playlist.song.id(req.params.songId).deleteOne();
-      return playlist.save();
+        playlist.song.id(req.params.songId).deleteOne();
+        return playlist.save();
     })
     .then(() => res.redirect(`/playlists/${req.params.playlistId}`))
     .catch(next);

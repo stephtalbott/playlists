@@ -55,13 +55,12 @@ function updatePlaylistForm(req, res, next) {
 }
 
 function update(req, res, next) {
-  Playlist.findById(req.params.id)
-    .then((playlist) => {
-      if (!playlist.user.equals(req.user._id))
-        throw new Error("Unauthorized");
-
+    Playlist.findById(req.params.id)
+        .then((playlist) => {
+            if (!playlist.user.equals(req.user._id))
+            throw new Error("Unauthorized");
       // if the users match, update with updateOne method and pass in the info from the form
-      return playlist.updateOne(req.body);
+            return playlist.updateOne(req.body);
     })
     .then(() => res.redirect(`/playlists/${req.params.id}`))
     .catch(next);

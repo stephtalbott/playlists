@@ -1,83 +1,83 @@
 <%- include('../partials/header.ejs') %>
 
 <div class="container">
-  <div class="row">
-    <div class="col-md-6">
-      <!-- First Column - Table with song details -->
-      <div class="table-container">
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Song Name</th>
-              <th>Artist Name</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <% playlist.song.forEach(function(song) { %>
-              <tr>
-                <td scope="row">"<%= song.name %>"</td>
-                <td scope="row"><%= song.artistName %></td>
-                <td scope="row">
-                  <form action="/playlists/<%= playlist.id %>/<%= song.id %>?_method=DELETE" method="POST">
-                    <button type="submit" class="btn btn-warning">remove</button>
-                  </form>
-                </td>
-              </tr>
-            <% }); %>
-          </tbody>
-        </table>
-      </div>
+    <div class="row">
+        <div class="col-md-6">
+            <!-- First Column - Table with song details -->
+            <div class="table-container">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Song Name</th>
+                            <th>Artist Name</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% playlist.song.forEach(function(song) { %>
+                        <tr>
+                            <td scope="row">"<%= song.name %>"</td>
+                            <td scope="row"><%= song.artistName %></td>
+                            <td scope="row">
+                                <form action="/playlists/<%= playlist.id %>/<%= song.id %>?_method=DELETE" method="POST">
+                                    <button type="submit" class="btn btn-warning">remove</button>
+                                </form>
+                            </td>
+                        </tr>
+                        <% }); %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-6 d-flex flex-column align-items-center">
+            <!-- Second Column - Playlist details -->
+            <div class="row">
+                <div class="col">
+                    <!-- Playlist name -->
+                    <h1><%= playlist.name %></h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <!-- Playlist description -->
+                    <p><%= playlist.description %></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <!-- Edit and delete playlist buttons -->
+                    <div class="d-flex justify-content-start">
+                        <a href="/playlists/<%= playlist.id %>/edit" class="mr-2">
+                            <button type="submit" class="btn btn-primary">edit playlist</button>
+                        </a>
+                        <form action="/playlists/<%= playlist.id %>?_method=DELETE" method="POST">
+                            <button type="submit" class="btn btn-danger">delete playlist</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+    <br><Br>
+            know a song that belongs on this playlist? <br>
+            <div class="row">
+                <div class="col d-flex justify-content-center">
+                    <!-- Add song form -->
+                    <form action="/playlists/<%= playlist.id %>" method="POST">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="songTitle" name="name" placeholder="Song Title">
+                            <label for="songTitle">Song Title</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="artistName" name="artistName" placeholder="Artist Name">
+                            <label for="artistName">Artist Name</label>
+                        </div>
+                        <div class="col d-flex justify-content-center">
+                            <button type="submit" class="btn btn-success">add it</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="col-md-6 d-flex flex-column align-items-center">
-      <!-- Second Column - Playlist details -->
-      <div class="row">
-        <div class="col">
-          <!-- Playlist name -->
-          <h1><%= playlist.name %></h1>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <!-- Playlist description -->
-          <p><%= playlist.description %></p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <!-- Edit and delete playlist buttons -->
-          <div class="d-flex justify-content-start">
-            <a href="/playlists/<%= playlist.id %>/edit" class="mr-2">
-              <button type="submit" class="btn btn-primary">edit playlist</button>
-            </a>
-            <form action="/playlists/<%= playlist.id %>?_method=DELETE" method="POST">
-              <button type="submit" class="btn btn-danger">delete playlist</button>
-            </form>
-          </div>
-        </div>
-      </div>
-      <br><Br>
-        know a song that belongs on this playlist? <br>
-      <div class="row">
-        <div class="col d-flex justify-content-center">
-          <!-- Add song form -->
-          <form action="/playlists/<%= playlist.id %>" method="POST">
-            <div class="form-floating mb-3">
-              <input type="text" class="form-control" id="songTitle" name="name" placeholder="Song Title">
-              <label for="songTitle">Song Title</label>
-            </div>
-            <div class="form-floating mb-3">
-              <input type="text" class="form-control" id="artistName" name="artistName" placeholder="Artist Name">
-              <label for="artistName">Artist Name</label>
-            </div>
-            <div class="col d-flex justify-content-center">
-              <button type="submit" class="btn btn-primary">Add it!</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
 
 

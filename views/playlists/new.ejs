@@ -1,9 +1,27 @@
 <%- include('../partials/header') %>
 
-<form action="/playlists" method="POST" autocomplete="off">
-    Title: <input type="text" name="name"> <br>
-    This Playlist is For: <input type="text" name="description">
-    <button type="submit">Save Playlist</button>
-</form>
+
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form action="/playlists" method="POST" autocomplete="off">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="name" name="name" placeholder=" ">
+                    <label for="name">Title:</label>
+                </div>
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="description" name="description" placeholder=" ">
+                    <label for="description">Description:</label>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Save Playlist</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
 
 <%- include('../partials/footer') %>

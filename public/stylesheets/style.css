@@ -24,4 +24,18 @@
 
 }
 
-
+.btn-circle{
+    border-radius: 50%;
+    height: 50px;
+    width:50px;
+    background-color: blue;
+    border: 0; 
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    font-size: 30px;
+    padding-bottom: 10px;
+    padding-left: 8px;
+}
