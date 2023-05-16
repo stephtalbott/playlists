@@ -1,30 +1,73 @@
 <%- include('../partials/header.ejs') %>
 
-<h3>
-    <%= playlist.name %> <br>
-    for:<Br>
-    <%= playlist.description %>
-</h3>
 
-<ul>
-    <% playlist.song.forEach(function(song) { %>
-        <li>
-            <form action="/playlists/<%= playlist.id %>/<%= song.id %>?_method=DELETE" method="POST">
-                <button type="submit">X</button>
-            </form>
-                "<%= song.name %>" <Br>
-                by <%= song.artistName %>
-            </a>
-        </li>
-        <% }); %>
-</ul>
+<div class="container text-center">
+    <div class="row">
+        <div class ="col-sm-8">
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">Song Title:</th>
+                        <th scope="col">Artist Name:</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                <% playlist.song.forEach(function(song) { %>
+                    <tr>
+                        <td scope="row"> "<%= song.name %>"  </td>
+                        <td scope="row"> <%= song.artistName %>  </td>
+                        <td scope="row"> <form action="/playlists/<%= playlist.id %>/<%= song.id %>?_method=DELETE" method="POST">
+                        <button type="submit">remove song</button></form> </td>
+                    </tr>
+                <% }); %>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm-4">
+            <h3>
+                <p class="fs-1"><%= playlist.name %></p>
+                <p class="fs-5"><%= playlist.description %></p>
+            </h3>
+        </div>
+    </div>
 
-<form action="/playlists/<%= playlist.id %>" method="POST">
-    Song Title: <input type="text" name="name"><br>
-    Artist Name: <input type="text" name="artistName"><br>
-    <button type="submit">Add Song</button>
-</form>
 
-<a href="/playlists/<%= playlist.id %>/edit">Edit Playlist</a>
+
+
+
+    <div class="col-sm-4">
+      <form action="/playlists/<%= playlist.id %>" method="POST">
+          <div class="col">
+            Song Title: <input type="text" name="name">
+          </div>
+            Artist Name: <input type="text" name="artistName">
+          <div class="col">
+            <button type="submit">Add Song</button>
+          </div>
+      </form>
+    </div>
+
+</div>
+
+<br><br>
+  <div class="row">
+    <div class="col">
+      <a href="/playlists/<%= playlist.id %>/edit">
+        <button type="submit">edit playlist</button>
+      </a>
+    </div>
+    <div class="col">
+      <form action="/playlists/<%= playlist.id %>?_method=DELETE" method="POST">
+        <button type="submit">delete playlist</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+
+
 
 <%- include('../partials/footer.ejs') %>
