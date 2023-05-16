@@ -44,13 +44,14 @@ function show(req, res, next) {
 }
 
 function updatePlaylistForm(req, res, next) {
-  Playlist.findById(req.params.id).then((playlist) => {
-    if (!playlist.user.equals(req.user._id)) throw new Error("Unauthorized");
-    res.render("playlists/edit", {
-      playlist,
-      title: "Playlist Edit Detail",
+    Playlist.findById(req.params.id)
+        .then((playlist) => {
+            if (!playlist.user.equals(req.user._id)) throw new Error("Unauthorized");
+            res.render("playlists/edit", {
+            playlist,
+            title: "Playlist Edit Detail",
+            });
     });
-  });
 }
 
 function update(req, res, next) {
