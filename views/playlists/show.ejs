@@ -1,43 +1,57 @@
 <%- include('../partials/header.ejs') %>
 
 
-<div class="container text-center">
-    <div class="row">
-        <div class ="col-sm-8">
-            <table>
-                <thead>
-                    <tr>
-                        <th scope="col">Song Title:</th>
-                        <th scope="col">Artist Name:</th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                <% playlist.song.forEach(function(song) { %>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <!-- First Column - Table with song details -->
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Song Name</th>
+            <th>Artist Name</th>
+            <th> </th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Table rows with song details -->
+            <% playlist.song.forEach(function(song) { %>
                     <tr>
                         <td scope="row"> "<%= song.name %>"  </td>
                         <td scope="row"> <%= song.artistName %>  </td>
                         <td scope="row"> <form action="/playlists/<%= playlist.id %>/<%= song.id %>?_method=DELETE" method="POST">
                         <button type="submit">remove song</button></form> </td>
                     </tr>
-                <% }); %>
-                </tbody>
-            </table>
-        </div>
-        <div class="col-sm-4">
-            <h3>
-                <p class="fs-1"><%= playlist.name %></p>
-                <p class="fs-5"><%= playlist.description %></p>
-            </h3>
-        </div>
+             <% }); %>
+        </tbody>
+      </table>
     </div>
-
-
-
-
-
-    <div class="col-sm-4">
-      <form action="/playlists/<%= playlist.id %>" method="POST">
+    <div class="col-md-6">
+      <!-- Second Column - Playlist details -->
+      <div class="row">
+        <div class="col">
+          <!-- Playlist name -->
+          <h2><%= playlist.name %></h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <!-- Playlist description -->
+          <p><%= playlist.description %></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+            <!-- Edit and delete playlist buttons -->
+            <a href="/playlists/<%= playlist.id %>/edit">
+                <button type="submit">edit playlist</button>
+            </a>
+            <form action="/playlists/<%= playlist.id %>?_method=DELETE" method="POST">
+                <button type="submit">delete playlist</button>
+            </form>
+            <form action="/playlists/<%= playlist.id %>" method="POST">
           <div class="col">
             Song Title: <input type="text" name="name">
           </div>
@@ -46,26 +60,11 @@
             <button type="submit">Add Song</button>
           </div>
       </form>
-    </div>
-
-</div>
-
-<br><br>
-  <div class="row">
-    <div class="col">
-      <a href="/playlists/<%= playlist.id %>/edit">
-        <button type="submit">edit playlist</button>
-      </a>
-    </div>
-    <div class="col">
-      <form action="/playlists/<%= playlist.id %>?_method=DELETE" method="POST">
-        <button type="submit">delete playlist</button>
-      </form>
+        </div>
+      </div>
     </div>
   </div>
 </div>
-
-
 
 
 

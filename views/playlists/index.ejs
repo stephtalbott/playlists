@@ -1,24 +1,41 @@
 <%- include('../partials/header') %>
-<center>
-<h2>Playlists</h2><h1>
-<a class="icon-link" href="/playlists/new">
-<i class="bi bi-plus-circle-fill"></i>
-</a>
-</h1>
-</center>
 
 
-<ul>
-    <% playlists.forEach(function(playlist) { %>
-        <li>
-            <form action="/playlists/<%= playlist.id %>?_method=DELETE" method="POST">
-                <button type="submit">X</button>
-            </form>
-            <a href="/playlists/<%= playlist.id %>">
-                <%= playlist.name %>
-            </a>
-        </li>
-        <% }); %>
-</ul>
+
+ <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <!-- Left Column with Table -->
+               
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Playlist Name</th>
+                            <th> </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Add your table rows dynamically here -->
+                        <% playlists.forEach(function(playlist) { %>
+                        <tr>
+                            <td scope="row"> <a href="/playlists/<%= playlist.id %>">
+                                <%= playlist.name %>
+                            </a></td>
+                            <td scope="row"> <form action="/playlists/<%= playlist.id %>?_method=DELETE" method="POST">
+                                <button type="submit">X</button>
+                                </form></td>
+                        </tr>
+                        <% }); %>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-6">
+                <!-- Right Column -->
+                <h2>Playlists</h2>
+                <a class="icon-link" href="/playlists/new">
+                    <i class="bi bi-plus-circle-fill"></i>
+            </div>
+        </div>
+    </div>
 
 <%- include('../partials/footer') %>
