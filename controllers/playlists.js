@@ -1,17 +1,30 @@
 const Playlist = require('../models/playlist');
+const User = require('../models/user')
 
 // READ ACTION - Index
 // GET all of the currently signed in users playlists
 function index(req, res, next) {
   Playlist.find({})
+    .populate('user')
     .then((playlists) => {
       res.render('playlists/index', {
         playlists,
-        title: 'My Playlists',
+        title: 'All Playlists',
       });
     })
     // if something goes wrong, pass it along to the error handler
     .catch(next);
+}
+
+function myIndex(req, res, next) {
+  Playlist.find({ user: req.user._id })
+  .then(playlists => {
+    res.render('playlists/mine', {
+      playlists, 
+      title: 'My Playlists'
+    });
+  })
+  .catch(next)
 }
 
 //renders a form for new playlist from a user
@@ -32,11 +45,13 @@ function create(req, res, next) {
 
 // read action CRUD - show
 function show(req, res, next) {
-    Playlist.findById(req.params.id)
+  req.body.user = req.user._id;
+  Playlist.findById(req.params.id)
         // () => {}
+        .populate('user')
         .then(playlist => {
             res.render('playlists/show', {
-                playlist, 
+                playlist,  
                 title: 'Playlist Details'
             })
         })
@@ -81,6 +96,7 @@ function deletePlaylist(req, res, next) {
 module.exports = {
     index, 
     newPlaylist,
+    myIndex,
     create,
     show,
     updatePlaylistForm,
