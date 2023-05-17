@@ -1,10 +1,9 @@
-const playlist = require('../models/playlist');
 const Playlist = require('../models/playlist');
 
 // READ ACTION - Index
 // GET all of the currently signed in users playlists
 function index(req, res, next) {
-  Playlist.find({ user: req.user._id })
+  Playlist.find({})
     .then((playlists) => {
       res.render('playlists/index', {
         playlists,
@@ -17,6 +16,7 @@ function index(req, res, next) {
 
 //renders a form for new playlist from a user
 function newPlaylist(req, res) {
+    req.body.user = req.user._id
     res.render('playlists/new', { title: 'New Playlist' })
 }
 

@@ -3,6 +3,7 @@ const router = express.Router();
 
 const playlistCtrl = require('../controllers/playlists')
 
+// localhost:3000/playlists/
 router.get('/', playlistCtrl.index) 
 
 // localhost:3000/playlists/new
