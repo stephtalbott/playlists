@@ -1,29 +1,13 @@
 const Playlist = require('../models/playlist');
-const User = require('../models/user')
-
 
 // READ ACTION - Index
 // GET all of the currently signed in users playlists
 function index(req, res, next) {
   Playlist.find({})
-    .populate('user')
     .then((playlists) => {
       res.render('playlists/index', {
         playlists,
-        title: 'All Playlists',
-      });
-    })
-    // if something goes wrong, pass it along to the error handler
-    .catch(next);
-}
-
-function myIndex(req, res, next) {
-  Playlist.find({ user: req.user._id})
-    .then((playlists) => {
-      res.render("playlists/mine", {
-        playlists,
-        user: req.user,
-        title: "My Playlists",
+        title: 'My Playlists',
       });
     })
     // if something goes wrong, pass it along to the error handler
@@ -50,21 +34,19 @@ function create(req, res, next) {
 function show(req, res, next) {
     Playlist.findById(req.params.id)
         // () => {}
-        .populate('user')
         .then(playlist => {
             res.render('playlists/show', {
                 playlist, 
-                user: req.user, 
                 title: 'Playlist Details'
             })
         })
         .catch(next)
-              console.log("this is req.body in playlist show", req.body);
 }
 
 function updatePlaylistForm(req, res, next) {
     Playlist.findById(req.params.id)
         .then((playlist) => {
+            if (!playlist.user.equals(req.user._id)) throw new Error("Unauthorized");
             res.render("playlists/edit", {
             playlist,
             title: "Playlist Edit Detail",
@@ -98,7 +80,6 @@ function deletePlaylist(req, res, next) {
 
 module.exports = {
     index, 
-    myIndex,
     newPlaylist,
     create,
     show,
