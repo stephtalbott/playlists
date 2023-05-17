@@ -5,7 +5,7 @@
         <div class="col-md-6">
             <!-- Header -->
             <div class="text-center mb-3">
-                <h1>Playlists</h1>
+                <h1> <%= user.name %>'s Playlists</h1>
                 <a href="/playlists/new">
                     <button type="submit" class="btn-circle">+</button>
                 </a>
@@ -20,7 +20,7 @@
                     <thead>
                         <tr>
                             <th scope="col" class="sticky-header">Playlist Name</th>
-                            <th scope="col" class="sticky-header">Created By:</th>
+                            <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -33,7 +33,9 @@
                                 </a>
                             </td>
                             <td scope="row">
-                                    <%= playlist.user.name %>
+                                <form action="/playlists/<%= playlist.id %>?_method=DELETE" method="POST">
+                                    <button type="submit" class="btn btn-danger">remove</button>
+                                </form>
                             </td>
                         </tr>
                         <% }); %>
@@ -43,10 +45,5 @@
         </div>
     </div>
 </div>
-
-
-
-
- 
 
 <%- include('../partials/footer') %>
