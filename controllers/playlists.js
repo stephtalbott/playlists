@@ -31,17 +31,17 @@ function myIndex(req, res, next) {
 
 //renders a form for new playlist from a user
 function newPlaylist(req, res) {
-    res.render('playlists/new', { title: 'New Playlist' })
+  res.render('playlists/new', { title: 'New Playlist' })
 }
 
 // creates a playlist - CRUD 
 function create(req, res, next) {
-    // from the session `req.user._id` I would like the `req.body` to have the current signed in user 
-    // {name: 'some value', user: 'object id value'}
-    req.body.user = req.user._id
-    Playlist.create(req.body)
-        .then(() => res.redirect('/playlists/mine'))
-        .catch(next)
+  // from the session `req.user._id` I would like the `req.body` to have the current signed in user 
+  // {name: 'some value', user: 'object id value'}
+  req.body.user = req.user._id
+  Playlist.create(req.body)
+    .then(() => res.redirect('/playlists/mine'))
+    .catch(next)
 }
 
 // read action CRUD - show
