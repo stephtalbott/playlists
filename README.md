@@ -1,4 +1,4 @@
-#Project 2 Planning Docs
+#playlist Keeper
 
 Link to Trello Board 
 [here](https://trello.com/b/H1RFASx7/project-2-playlists)

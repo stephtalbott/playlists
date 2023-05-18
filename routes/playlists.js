@@ -6,7 +6,7 @@ const playlistCtrl = require('../controllers/playlists')
 // localhost:3000/playlists/
 router.get('/', playlistCtrl.index) 
 
-// localhost:3000/playlists/
+// localhost:3000/playlists/mine
 router.get('/mine', playlistCtrl.myIndex) 
 
 // localhost:3000/playlists/new
