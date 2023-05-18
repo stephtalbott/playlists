@@ -44,13 +44,13 @@ library/object document mapper:
 packages: 
 - Node, Nodemon, dotenv, method-override, express-session, passport
 
-# Getting Started 
+## Getting Started 
 Access the app 
 [here](https://playlistkeeper.fly.dev/)! 
 
 From the landing page to log in, you will be prompted to sign in using credentials from a Google account. Once logged in, you may create your own playlists and view playlists other users have made! 
 
-# Next Steps 
+## Next Steps 
 V2 and beyond planned features:
 - a 'copy playlist' button that will allow a user to duplicate another user's playlist so they can add/edit songs as they would like
 - implementation of a 3rd party API to render top 40 album artwork on the landing page 
